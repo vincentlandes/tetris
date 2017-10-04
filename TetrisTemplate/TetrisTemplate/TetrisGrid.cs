@@ -1,18 +1,28 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Content;
 
 /*
  * a class for representing the Tetris playing grid
  */
 class TetrisGrid
 {
+    int blockSize = 30;
+    Vector2 gridPosition = Vector2.Zero;
+    int[,] grid;
+
+
     public TetrisGrid(Texture2D b)
     {
         gridblock = b;
         position = Vector2.Zero;
         this.Clear();
+        grid = new int[Width, Height];
+
     }
+
+    
 
     /*
      * sprite for representing a single grid block
@@ -52,6 +62,19 @@ class TetrisGrid
      */
     public void Draw(GameTime gameTime, SpriteBatch s)
     {
+        //draw the grid
+        for (int x = 0; x < Width; x++)
+        {
+            for (int y = 0; y < Height; y++)
+            {
+                int textureDrawn = grid[x, y];
+                if (textureDrawn == 0)
+                {
+                    s.Draw(gridblock, new Vector2(x * blockSize, y * blockSize), Color.White);
+                }
+                
+            }
+        }
     }
 }
 

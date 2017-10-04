@@ -76,7 +76,6 @@ class GameWorld
     {
         spriteBatch.Begin();
         grid.Draw(gameTime, spriteBatch);
-        DrawText("Hello!", Vector2.Zero, spriteBatch);
         spriteBatch.End();    
     }
 
