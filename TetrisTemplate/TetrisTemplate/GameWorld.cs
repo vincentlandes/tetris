@@ -18,9 +18,6 @@ class GameWorld
     GameState gameState;
     TetrisGrid grid;
 
-    //sprites
-    Texture2D l_block;
-
     public GameWorld(int width, int height, ContentManager Content)
     {
         screenWidth = width;
@@ -30,7 +27,6 @@ class GameWorld
 
         block = Content.Load<Texture2D>("block");
         font = Content.Load<SpriteFont>("SpelFont");
-        l_block = Content.Load<Texture2D>("l_block");
         grid = new TetrisGrid(block);
     }
 

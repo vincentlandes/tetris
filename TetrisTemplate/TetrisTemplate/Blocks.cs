@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,18 @@ namespace Tetris
 {
     class Blocks
     {
-    enum BlockTypes { Iblock, Jblock, Zblock, Oblock, Sblock, Tblock }
+    enum BlockTypes { Iblock, Jblock, Zblock, Oblock, Sblock, Tblock, Testblock }
+
+    public static Color[] BlockColor = {
+        Color.LightGray,    /* 0 */
+        Color.Orange,       /* 1 */
+        Color.Blue,         /* 2 */
+        Color.Red,          /* 3 */
+        Color.LightSkyBlue, /* 4 */
+        Color.Yellow,       /* 5 */
+        Color.Magenta,      /* 6 */
+        Color.LimeGreen     /* 7 */
+        };
 
     }
 

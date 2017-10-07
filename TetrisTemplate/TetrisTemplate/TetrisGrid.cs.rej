@@ -1,0 +1,10 @@
+diff a/TetrisTemplate/TetrisTemplate/TetrisGrid.cs b/TetrisTemplate/TetrisTemplate/TetrisGrid.cs	(rejected hunks)
+@@ -97,5 +97,8 @@
+             }
+         }
+     }
++
++
++
+ }
+ 
