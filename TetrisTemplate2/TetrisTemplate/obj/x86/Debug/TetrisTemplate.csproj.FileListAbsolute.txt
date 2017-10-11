@@ -1,0 +1,59 @@
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\Content\block.png
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\Content\SpelFont.spritefont
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\Content\SpelFont.xnb
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\Tetris.exe
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\Tetris.pdb
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\MonoGame.Framework.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\MonoGame.Framework.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\obj\x86\Debug\TetrisTemplate.csprojResolveAssemblyReference.cache
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\obj\x86\Debug\Tetris.exe
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplate\TetrisTemplate\obj\x86\Debug\Tetris.pdb
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplateKaal\TetrisTemplate\obj\x86\Debug\Tetris.exe
+D:\Documenten\Visual Studio 2015\Projects\TetrisTemplateKaal\TetrisTemplate\obj\x86\Debug\Tetris.pdb
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\obj\x86\Debug\Tetris.exe
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\obj\x86\Debug\Tetris.pdb
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\obj\x86\Debug\TetrisTemplate.csprojResolveAssemblyReference.cache
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\block.png
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\SpelFont.spritefont
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\SpelFont.xnb
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\block_sprite.png
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Tetris.exe
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Tetris.pdb
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\MonoGame.Framework.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.MediaFoundation.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XAudio2.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.DXGI.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D11.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct2D1.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.dll
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\MonoGame.Framework.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.MediaFoundation.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XAudio2.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.DXGI.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D11.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct2D1.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.xml
+D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
