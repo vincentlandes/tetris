@@ -57,5 +57,3 @@ D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Dir
 D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.XInput.xml
 D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.RawInput.xml
 D:\Afbeeldingen\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D9.xml
-D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\obj\x86\Debug\Tetris.exe
-D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\obj\x86\Debug\Tetris.pdb

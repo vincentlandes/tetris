@@ -18,6 +18,7 @@ class GameWorld
     Texture2D block;
     GameState gameState;
     TetrisGrid grid;
+    
 
     public GameWorld(int width, int height, ContentManager Content)
     {

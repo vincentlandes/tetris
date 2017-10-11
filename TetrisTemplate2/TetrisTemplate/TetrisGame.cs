@@ -29,6 +29,7 @@ class TetrisGame : Game
 
         // create the input helper object
         inputHelper = new InputHelper();
+        
     }
 
     protected override void LoadContent()
@@ -45,6 +46,7 @@ class TetrisGame : Game
         inputHelper.Update(gameTime);
         gameWorld.HandleInput(gameTime, inputHelper);
         gameWorld.Update(gameTime);
+
     }
 
     protected override void Draw(GameTime gameTime)

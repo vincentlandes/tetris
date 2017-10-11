@@ -20,6 +20,7 @@ class InputHelper
         timeSinceLastKeyPress = 0;
     }
 
+
     //updates the input helper object by updating the mouse and keyboard states and updating the timeSinceLastKeyPress variable
     public void Update(GameTime gameTime)
     {

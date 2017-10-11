@@ -62,6 +62,10 @@ namespace Tetris
                 {1, 1, 1},
                 {0, 0, 0}
             });
+            //TestBlock
+            Pieces.Add(new int[1, 1]{
+                {1}
+            });
         }
         //Add the colors to an array
         public static Color[] BlockColor = {
@@ -72,7 +76,8 @@ namespace Tetris
         Color.LightSkyBlue, /* 4 */ /* ZBlock */
         Color.Yellow,       /* 5 */ /* OBlock */
         Color.Magenta,      /* 6 */ /* SBlock */
-        Color.LimeGreen     /* 7 */ /* TBlock */
+        Color.LimeGreen,    /* 7 */ /* TBlock */
+        Color.Brown         /*Testblock*/
         };
 
     }

@@ -13,7 +13,8 @@ class TetrisGrid
     Blocks blocks;
     int blockSize = 30;    
     Texture2D gridblock;
-    private int[,] SpawnedPiece;
+    public int[,] SpawnedPiece;
+    public int blockLength;
     private Vector2 SpawnedPieceLocation;
     public static List<int> blockOrder = new List<int>();
 
@@ -59,20 +60,32 @@ class TetrisGrid
 
     public void SpawnBlock()
     {
+        CreateBlock();
+        int offset = rndBlock.Next(8);
+        for (int x = 0; x < blockLength; x++)
+        {
+            for (int y = 0; y < blockLength; y++)
+            {
+                mainGrid[x + offset , y] = SpawnedPiece[x, y];
+            }
+        }
+    }
+
+    public void CreateBlock()
+    {
         int color = blockOrder[0];
 
         SpawnedPiece = (int[,])Blocks.Pieces[color].Clone();
-        int blockLenght = SpawnedPiece.GetLength(0);
+        blockLength = SpawnedPiece.GetLength(0);
 
-        for (int x = 0; x < blockLenght; x++)
+        for (int x = 0; x < blockLength; x++)
         {
-            for (int y = 0; y < blockLenght; y++)
+            for (int y = 0; y < blockLength; y++)
             {
                 SpawnedPiece[x, y] *= (color + 1);
                 SpawnedPieceLocation = Vector2.Zero;
             }
         }
-
         AddSpawnList();
     }
 
@@ -80,6 +93,20 @@ class TetrisGrid
     {
         blockOrder.RemoveAt(0);
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
+    }
+
+    private void MoveBlock()
+    {
+        // check of die geplaatst kan worden en of die binnen het grid is
+        //if left arrow is pressed
+        // ga naar links
+        //if right arrow is pressed
+        // ga naar rechts
+
+        //standaard naar beneden gaan
+
+
+
     }
 
     //Clears the grid
@@ -111,7 +138,7 @@ class TetrisGrid
                 s.Draw(gridblock, new Vector2(mainGridPosition.X + x * blockSize, mainGridPosition.Y + y * blockSize), blockColor);
                 if (secGrid.GetLength(0) > x && secGrid.GetLength(1) > y)
                 {
-                    s.Draw(gridblock, new Vector2(secGridPosition.X + x * blockSize, secGridPosition.Y + y * blockSize), blockColor);
+                    //s.Draw(gridblock, new Vector2(secGridPosition.X + x * blockSize, secGridPosition.Y + y * blockSize), blockColor);
                 }
             }
         }
