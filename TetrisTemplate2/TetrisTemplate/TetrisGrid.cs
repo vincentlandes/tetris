@@ -14,8 +14,11 @@ class TetrisGrid
     int blockSize = 30;    
     Texture2D gridblock;
     public int[,] SpawnedPiece;
-    public int blockLength;
+    public int[,] secPiece;
+    int blockLength;
+    int secblockLength;
     private Vector2 SpawnedPieceLocation;
+    private Vector2 secPieceLocation;
     public static List<int> blockOrder = new List<int>();
 
     //Grid variable
@@ -69,23 +72,47 @@ class TetrisGrid
                 mainGrid[x + offset , y] = SpawnedPiece[x, y];
             }
         }
+
+        for (int x = 0; x < secblockLength; x++)
+        {
+            for (int y = 0; y < secblockLength; y++)
+            {
+                secGrid[x, y] = secPiece[x, y];
+            }
+
+        }
     }
 
     public void CreateBlock()
     {
-        int color = blockOrder[0];
+        int mainColor = blockOrder[0];
 
-        SpawnedPiece = (int[,])Blocks.Pieces[color].Clone();
+        SpawnedPiece = (int[,])Blocks.Pieces[mainColor].Clone();
         blockLength = SpawnedPiece.GetLength(0);
 
         for (int x = 0; x < blockLength; x++)
         {
             for (int y = 0; y < blockLength; y++)
             {
-                SpawnedPiece[x, y] *= (color + 1);
+                SpawnedPiece[x, y] *= (mainColor + 1);
                 SpawnedPieceLocation = Vector2.Zero;
             }
         }
+
+        int secColor = blockOrder[1];
+
+        secPiece = (int[,])Blocks.Pieces[secColor].Clone();
+        secblockLength = secPiece.GetLength(0);
+
+        for (int x = 0; x < secblockLength; x++)
+        {
+            for (int y = 0; y < secblockLength; y++)
+            {
+                secPiece[x, y] *= (secColor + 1);
+                secPieceLocation = Vector2.Zero;
+            }
+        }
+
         AddSpawnList();
     }
 
@@ -104,9 +131,42 @@ class TetrisGrid
         // ga naar rechts
 
         //standaard naar beneden gaan
+    }
 
+    //Check if a row is full
+    private void CheckRow()
+    {
+        //Check form the bottem to the top
+        for (int y = Height; y >= 0 ; y--)
+        {
+            bool completeRow = true;
+            for (int x = 0; x < Width; x++)
+            {
+                //When there is a empty spot in a row
+                if (mainGrid[x, y] == 0)
+                    completeRow = false;
+            }
+            //When a row is completely full
+            if (completeRow)
+            {
+                DeleteRow(y);
+                y++; //<-- rij terug zetten omdat het kan gebeuren dat er twee rijen tegelijk vol zijn en dan zou de onderste rij verwijderd worden, de rij daar boven op die rij worden gezet, en dan de CheckRow functie een omhoog zou gaan, en daardoor word die rij ook niet meer gecontroleerd.
+                //Score + 100
+            }
+        }
+    }
 
-
+    //Deletes a row
+    private void DeleteRow(int row)
+    {
+        for (int y = row; y >= 0 ; y--)
+        {
+            for (int x = 0; x < Width; x++)
+            {
+                //zet de waardes van de rij er boven in de huidige rij
+                mainGrid[x, y] = mainGrid[x, y - 1];
+            }
+        }
     }
 
     //Clears the grid
@@ -138,7 +198,8 @@ class TetrisGrid
                 s.Draw(gridblock, new Vector2(mainGridPosition.X + x * blockSize, mainGridPosition.Y + y * blockSize), blockColor);
                 if (secGrid.GetLength(0) > x && secGrid.GetLength(1) > y)
                 {
-                    //s.Draw(gridblock, new Vector2(secGridPosition.X + x * blockSize, secGridPosition.Y + y * blockSize), blockColor);
+                    Color secblockColor = Blocks.BlockColor[secGrid[x, y]];
+                    s.Draw(gridblock, new Vector2(secGridPosition.X + x * blockSize, secGridPosition.Y + y * blockSize), secblockColor);
                 }
             }
         }
