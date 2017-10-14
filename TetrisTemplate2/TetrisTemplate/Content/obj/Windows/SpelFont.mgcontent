@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/Documenten/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/SpelFont.spritefont</SourceFile>
-  <SourceTime>2016-10-05T15:43:36+02:00</SourceTime>
-  <DestFile>D:/Documenten/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/bin/Windows/SpelFont.xnb</DestFile>
-  <DestTime>2017-10-12T13:04:51.7503843+02:00</DestTime>
+  <SourceFile>C:/Users/vland/Documents/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/SpelFont.spritefont</SourceFile>
+  <SourceTime>2017-10-11T15:46:00.8867486+02:00</SourceTime>
+  <DestFile>C:/Users/vland/Documents/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/bin/Windows/SpelFont.xnb</DestFile>
+  <DestTime>2017-10-13T15:24:38.2621029+02:00</DestTime>
   <Importer>FontDescriptionImporter</Importer>
   <ImporterTime>2016-03-30T08:36:08+02:00</ImporterTime>
   <Processor>FontDescriptionProcessor</Processor>

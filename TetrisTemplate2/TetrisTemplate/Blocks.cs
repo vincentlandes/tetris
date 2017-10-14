@@ -25,46 +25,46 @@ namespace Tetris
             //Jblock
             Pieces.Add(new int[3, 3]{
                 { 0, 0, 0},
-                { 1, 1, 1},
-                { 0, 0, 1}
+                { 2, 2, 2},
+                { 0, 0, 2}
             });
 
             //Lblock
             Pieces.Add(new int[3, 3]{
-                { 0, 0, 1},
-                { 1, 1, 1},
+                { 0, 0, 3},
+                { 3, 3, 3},
                 { 0, 0, 0}
             });
 
             //Zblock
             Pieces.Add(new int[3, 3]{
-                {1, 1, 0},
-                {0, 1, 1},
+                {4, 4, 0},
+                {0, 4, 4},
                 {0, 0, 0}
             });
 
             //Oblock
             Pieces.Add(new int[2, 2]{
-                {1, 1},
-                {1, 1},
+                {5, 5},
+                {5, 5},
             });
 
             //Sblock
             Pieces.Add(new int[3, 3]{
-                {0, 1, 1},
-                {1, 1, 0},
+                {0, 6, 6},
+                {6, 6, 0},
                 {0, 0, 0}
             });
 
             //Tblock
             Pieces.Add(new int[3, 3]{
-                {0, 1, 0},
-                {1, 1, 1},
+                {0, 7, 0},
+                {7, 7, 7},
                 {0, 0, 0}
             });
             //TestBlock
             Pieces.Add(new int[1, 1]{
-                {1}
+                {8}
             });
         }
         //Add the colors to an array
@@ -77,7 +77,7 @@ namespace Tetris
         Color.Yellow,       /* 5 */ /* OBlock */
         Color.Magenta,      /* 6 */ /* SBlock */
         Color.LimeGreen,    /* 7 */ /* TBlock */
-        Color.Brown         /*Testblock*/
+        Color.Brown         /* 8 */ /*Testblock*/
         };
 
     }

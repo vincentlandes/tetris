@@ -5,8 +5,9 @@ using Microsoft.Xna.Framework.Graphics;
 class TetrisGame : Game
 {
     SpriteBatch spriteBatch;
-    InputHelper inputHelper;
+    public static InputHelper inputHelper;
     GameWorld gameWorld;
+    
 
     [STAThread]
     static void Main(string[] args)

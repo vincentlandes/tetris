@@ -19,6 +19,8 @@ class GameWorld
     GameState gameState;
     TetrisGrid grid;
     
+    
+
 
     public GameWorld(int width, int height, ContentManager Content)
     {
@@ -42,6 +44,7 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
+        grid.MoveBlock();
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)

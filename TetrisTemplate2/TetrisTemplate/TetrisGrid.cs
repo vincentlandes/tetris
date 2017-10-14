@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Tetris;
+using Microsoft.Xna.Framework.Input;
 
 //a class for representing the Tetris playing grid
 class TetrisGrid
@@ -46,7 +47,7 @@ class TetrisGrid
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
 
-        SpawnBlock();
+        CreateBlock();
     }
 
     //Width in terms of grid elements
@@ -61,58 +62,22 @@ class TetrisGrid
         get { return 20; }
     }
 
-    public void SpawnBlock()
-    {
-        CreateBlock();
-        int offset = rndBlock.Next(8);
-        for (int x = 0; x < blockLength; x++)
-        {
-            for (int y = 0; y < blockLength; y++)
-            {
-                mainGrid[x + offset , y] = SpawnedPiece[x, y];
-            }
-        }
-
-        for (int x = 0; x < secblockLength; x++)
-        {
-            for (int y = 0; y < secblockLength; y++)
-            {
-                secGrid[x, y] = secPiece[x, y];
-            }
-
-        }
-    }
-
     public void CreateBlock()
     {
-        int mainColor = blockOrder[0];
-
-        SpawnedPiece = (int[,])Blocks.Pieces[mainColor].Clone();
+        int offset = rndBlock.Next(8);
+        SpawnedPiece = (int[,])Blocks.Pieces[blockOrder[0]];
         blockLength = SpawnedPiece.GetLength(0);
 
-        for (int x = 0; x < blockLength; x++)
+
+        for (int y = 0; y < blockLength; y++)
         {
-            for (int y = 0; y < blockLength; y++)
+            for (int x = 0; x < blockLength; x++)
             {
-                SpawnedPiece[x, y] *= (mainColor + 1);
-                SpawnedPieceLocation = Vector2.Zero;
+                mainGrid[x + offset, y] = SpawnedPiece[x, y];
+               
             }
         }
-
-        int secColor = blockOrder[1];
-
-        secPiece = (int[,])Blocks.Pieces[secColor].Clone();
-        secblockLength = secPiece.GetLength(0);
-
-        for (int x = 0; x < secblockLength; x++)
-        {
-            for (int y = 0; y < secblockLength; y++)
-            {
-                secPiece[x, y] *= (secColor + 1);
-                secPieceLocation = Vector2.Zero;
-            }
-        }
-
+        SpawnedPieceLocation.X = offset;
         AddSpawnList();
     }
 
@@ -122,11 +87,29 @@ class TetrisGrid
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
     }
 
-    private void MoveBlock()
+    public void MoveBlock()
     {
-        // check of die geplaatst kan worden en of die binnen het grid is
-        //if left arrow is pressed
+        //check eerst of het nog binnen de grid is
+        if (TetrisGame.inputHelper.KeyPressed(Keys.Right))
+        {
+            for (int y = blockLength; y >= 0; y--)
+            {
+                for (int x = blockLength; x >= 0 ; x--)
+                {
+                    if ((int)SpawnedPieceLocation.X + 1 + x < Width){
+                        if (mainGrid[x + (int)SpawnedPieceLocation.X + 1, y] == 0)
+                        {
+                            mainGrid[x + (int)SpawnedPieceLocation.X + 1, y] = mainGrid[x + (int)SpawnedPieceLocation.X, y];
+                            mainGrid[x + (int)SpawnedPieceLocation.X, y] = 0;
+                        } }
+
+                }
+            }
+            SpawnedPieceLocation.X++;
+        }
+
         // ga naar links
+    
         //if right arrow is pressed
         // ga naar rechts
 
@@ -196,6 +179,8 @@ class TetrisGrid
                 Color blockColor = Blocks.BlockColor[mainGrid[x, y]];
 
                 s.Draw(gridblock, new Vector2(mainGridPosition.X + x * blockSize, mainGridPosition.Y + y * blockSize), blockColor);
+
+
                 if (secGrid.GetLength(0) > x && secGrid.GetLength(1) > y)
                 {
                     Color secblockColor = Blocks.BlockColor[secGrid[x, y]];
@@ -203,6 +188,8 @@ class TetrisGrid
                 }
             }
         }
+
+        
     }
 }
 
