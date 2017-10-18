@@ -176,3 +176,7 @@ D:\Video's\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\SharpDX.Direct3D
 D:\Video's\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\exitbutton.png
 D:\Video's\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\playOriginal.png
 D:\Video's\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\playTrump.png
+C:\Users\vland\Documents\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\exitbutton.png
+C:\Users\vland\Documents\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\playOriginal.png
+C:\Users\vland\Documents\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\playTrump.png
+C:\Users\vland\Documents\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\menubutton.png

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
 using Tetris.Content;
+using Tetris;
 
 enum GameState
 {
@@ -21,9 +22,10 @@ class GameWorld
 
     public Menu menu;
     public TetrisGrid grid;
+    public GameOver gameover;
 
     SpriteFont font;
-    Texture2D block, playOriginal, exitbutton;
+    Texture2D block, playOriginal, exitbutton, menubutton;
        
     
     public GameWorld(int width, int height, ContentManager Content)
@@ -37,9 +39,11 @@ class GameWorld
         block = Content.Load<Texture2D>("block_sprite");
         playOriginal = Content.Load<Texture2D>("playOriginal");
         exitbutton = Content.Load<Texture2D>("exitbutton");
+        menubutton = Content.Load<Texture2D>("menubutton");
 
         menu = new Menu(playOriginal, exitbutton);
         grid = new TetrisGrid(block, font, exitbutton);
+        gameover = new GameOver(exitbutton, menubutton);
 
     }
 
@@ -54,8 +58,14 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        menu.Update(gameTime);
-        grid.Update(gameTime);
+        if (gameState == GameState.Menu)
+            menu.Update(gameTime);
+
+        if (gameState == GameState.PlayOriginal)
+            grid.Update(gameTime);
+
+        if (gameState == GameState.GameOver)
+            gameover.Update(gameTime);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
@@ -78,7 +88,7 @@ class GameWorld
 
         if (gameState == GameState.GameOver)
         {
-            //
+            gameover.Draw(gameTime, spriteBatch);
             spriteBatch.End();
         }
 

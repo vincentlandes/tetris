@@ -6,7 +6,7 @@ class TetrisGame : Game
 {
     SpriteBatch spriteBatch;
     public static InputHelper inputHelper;
-    GameWorld gameWorld;
+    public static GameWorld gameWorld;
     
 
     [STAThread]
@@ -53,6 +53,8 @@ class TetrisGame : Game
         if (gameWorld.menu.ExitGame)
             Exit();
         if (gameWorld.grid.ExitGame)
+            Exit();
+        if (gameWorld.gameover.ExitGame)
             Exit();
     }
 

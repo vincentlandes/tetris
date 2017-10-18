@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 
+
 namespace Tetris.Content
 {
     class Menu
@@ -32,8 +33,12 @@ namespace Tetris.Content
         {
             if (TetrisGame.inputHelper.MouseLeftButtonPressed())
             {
-                if (TetrisGame.inputHelper.CheckButtonPressed((int)playOriginalPos.X, (int)playOriginalPos.Y))      
+                if (TetrisGame.inputHelper.CheckButtonPressed((int)playOriginalPos.X, (int)playOriginalPos.Y))
+                {
+                    TetrisGame.gameWorld.grid.Clear();
                     GameWorld.gameState = GameState.PlayOriginal;
+                }      
+                    
 
                 if (TetrisGame.inputHelper.CheckButtonPressed((int)exitButtonPos.X, (int)exitButtonPos.Y))
                      Exit();

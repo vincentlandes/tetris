@@ -152,7 +152,7 @@ class TetrisGrid
                 SpawnedPieceLocation = NextSpawnPieceLocation;
         }
 
-        //Move Block to the left
+    //Move Block to the left
         if (TetrisGame.inputHelper.KeyPressed(Keys.Left))
         {
             Vector2 NextSpawnPieceLocation = SpawnedPieceLocation + new Vector2(-1, 0);
@@ -174,10 +174,25 @@ class TetrisGrid
             Timer = 0;
         }
 
-        //Move Block faster Down
+        //Move Block down faster
         if (TetrisGame.inputHelper.KeyPressed(Keys.Down))
         {
             Timer = TimerEnd;
+        }
+
+        //Place block on the floor when pressing UP
+        if (TetrisGame.inputHelper.KeyPressed(Keys.Up))
+        {
+            bool FloorLocation = true;
+            while(FloorLocation)
+            {
+            Vector2 NextSpawnPieceLocation = SpawnedPieceLocation + new Vector2(0, 1);
+
+            if (PlaceFree((int)NextSpawnPieceLocation.X, (int)NextSpawnPieceLocation.Y))
+                SpawnedPieceLocation = NextSpawnPieceLocation;
+            else
+                FloorLocation = false;
+            }
         }
     }
 
@@ -219,6 +234,11 @@ class TetrisGrid
                 if (SpawnedPiece[x, y] != 0)
                 {
                     mainGrid[(int)SpawnedPieceLocation.X + x, (int)SpawnedPieceLocation.Y + y] = SpawnedPiece[x, y];
+                    for (int px = 0; px < Width; px++)
+                    {
+                        if (mainGrid[px, 0] != 0)
+                            GameWorld.gameState = GameState.GameOver;
+                    }
                 }
             }
         }

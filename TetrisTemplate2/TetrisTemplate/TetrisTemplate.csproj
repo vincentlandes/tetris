@@ -40,7 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Blocks.cs" />
-    <Compile Include="Content\Menu.cs" />
+    <Compile Include="GameOver.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="GameWorld.cs" />
     <Compile Include="InputHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -67,6 +68,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\exitbutton.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\menubutton.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\playOriginal.png">
