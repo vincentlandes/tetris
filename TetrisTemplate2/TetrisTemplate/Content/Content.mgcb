@@ -19,3 +19,9 @@
 /processorParam:TextureFormat=Compressed
 /build:SpelFont.spritefont
 
+#begin placeBlock.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:placeBlock.wav
+

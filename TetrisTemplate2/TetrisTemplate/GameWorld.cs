@@ -26,6 +26,7 @@ class GameWorld
 
     SpriteFont font;
     Texture2D block, playOriginal, exitbutton, menubutton;
+    SoundEffect placeBlock;
        
     
     public GameWorld(int width, int height, ContentManager Content)
@@ -40,9 +41,10 @@ class GameWorld
         playOriginal = Content.Load<Texture2D>("playOriginal");
         exitbutton = Content.Load<Texture2D>("exitbutton");
         menubutton = Content.Load<Texture2D>("menubutton");
+        placeBlock = Content.Load<SoundEffect>("placeBlock");
 
         menu = new Menu(playOriginal, exitbutton);
-        grid = new TetrisGrid(block, font, exitbutton);
+        grid = new TetrisGrid(block, font, exitbutton, placeBlock);
         gameover = new GameOver(exitbutton, menubutton);
 
     }

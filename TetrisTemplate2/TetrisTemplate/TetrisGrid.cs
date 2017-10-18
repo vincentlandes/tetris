@@ -5,16 +5,17 @@ using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Tetris;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 //a class for representing the Tetris playing grid
 class TetrisGrid
 {
-
     //Variable    
     //Block variable
     Blocks blocks;
     int blockSize = 30;
     Texture2D gridblock;
+    SoundEffect placeBlock;
 
     //Main Block variable
     public int[,] SpawnedPiece;
@@ -61,7 +62,7 @@ class TetrisGrid
    
 
     //
-    public TetrisGrid(Texture2D block, SpriteFont spriteFont, Texture2D ExitButton)
+    public TetrisGrid(Texture2D block, SpriteFont spriteFont, Texture2D ExitButton, SoundEffect playblock)
     {
         //Make a new grid and clear it
         mainGrid = new int[Width, Height];
@@ -76,6 +77,7 @@ class TetrisGrid
 
         //
         font = spriteFont;
+        placeBlock = playblock;
         exitButton = ExitButton;
 
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
@@ -152,7 +154,7 @@ class TetrisGrid
                 SpawnedPieceLocation = NextSpawnPieceLocation;
         }
 
-    //Move Block to the left
+        //Move Block to the left
         if (TetrisGame.inputHelper.KeyPressed(Keys.Left))
         {
             Vector2 NextSpawnPieceLocation = SpawnedPieceLocation + new Vector2(-1, 0);
@@ -234,6 +236,7 @@ class TetrisGrid
                 if (SpawnedPiece[x, y] != 0)
                 {
                     mainGrid[(int)SpawnedPieceLocation.X + x, (int)SpawnedPieceLocation.Y + y] = SpawnedPiece[x, y];
+                    placeBlock.Play();
                     for (int px = 0; px < Width; px++)
                     {
                         if (mainGrid[px, 0] != 0)
