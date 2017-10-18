@@ -10,45 +10,42 @@ using Microsoft.Xna.Framework.Input;
 class TetrisGrid
 {
 
+    //Variable    
     //Block variable
     Blocks blocks;
-    int blockSize = 30;    
+    int blockSize = 30;
     Texture2D gridblock;
-    public int[,] SpawnedPiece;
-    public int[,] secPiece;
-    int blockLength;
-    int secblockLength;
-    private Vector2 SpawnedPieceLocation;
-    private Vector2 secPieceLocation;
-    public static List<int> blockOrder = new List<int>();
 
-    //Grid variable
+    //Main Block variable
+    public int[,] SpawnedPiece;
+    int blockLength;
+    private Vector2 SpawnedPieceLocation;
+    int Timer = 0;
+    int TimerEnd = 400;
+
+    //Second Block variable
+    public int[,] secPiece;
+    int secblockLenght;
+
+    //Block Order variable
+    public static List<int> blockOrder = new List<int>();
+    Random rndBlock;
+
+    //Main Grid variable
     int[,] mainGrid;
-    Vector2 mainGridPosition = new Vector2(30,0);
+    Vector2 mainGridPosition = new Vector2(30, 0);
+
+    //Second Grid variable
     int[,] secGrid;
     Vector2 secGridPosition = new Vector2(420, 60);
 
-    //
-    Random rndBlock;
-
-    public TetrisGrid(Texture2D block)
-    {
-        //Make a new grid and clear it
-        mainGrid = new int[Width, Height];
-        secGrid = new int[4, 4];
-        this.Clear();
-        //Add the blocks to the list
-        blocks = new Blocks();
-        blocks.AddBlocksToList();
-        //
-        gridblock = block;
-        rndBlock = new Random();
-
-        blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
-        blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
-
-        CreateBlock();
-    }
+    //Score
+    int Score = 0;
+    Vector2 ScorePosition = new Vector2(420, 200);
+    SpriteFont font;
+    Texture2D exitButton;
+    Vector2 exitButtonPos = new Vector2(420, 500);
+    public bool ExitGame;
 
     //Width in terms of grid elements
     public int Width
@@ -61,66 +58,203 @@ class TetrisGrid
     {
         get { return 20; }
     }
+   
 
-    public void CreateBlock()
+    //
+    public TetrisGrid(Texture2D block, SpriteFont spriteFont, Texture2D ExitButton)
     {
-        int offset = rndBlock.Next(8);
-        SpawnedPiece = (int[,])Blocks.Pieces[blockOrder[0]];
-        blockLength = SpawnedPiece.GetLength(0);
+        //Make a new grid and clear it
+        mainGrid = new int[Width, Height];
+        secGrid = new int[4, 4];
+        this.Clear();
+        //Add the blocks to the list
+        blocks = new Blocks();
+        blocks.AddBlocksToList();
+        //
+        gridblock = block;
+        rndBlock = new Random();
 
+        //
+        font = spriteFont;
+        exitButton = ExitButton;
 
-        for (int y = 0; y < blockLength; y++)
-        {
-            for (int x = 0; x < blockLength; x++)
-            {
-                mainGrid[x + offset, y] = SpawnedPiece[x, y];
-               
-            }
-        }
-        SpawnedPieceLocation.X = offset;
-        AddSpawnList();
+        blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
+        blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
+
+        SpawnPiece();
     }
 
+
+    //Create a new block
+    private void SpawnPiece()
+    {
+        SpawnedPiece = Blocks.Pieces[blockOrder[0]];
+        blockLength = SpawnedPiece.GetLength(0);
+        SpawnedPieceLocation = new Vector2(6, 0);
+
+        secPiece = Blocks.Pieces[blockOrder[1]];
+        secblockLenght = secPiece.GetLength(0);
+        for (int x = 0; x < secGrid.GetLength(0); x++)
+        {
+            for (int y = 0; y < secGrid.GetLength(1); y++)
+            {
+                if (x < secblockLenght && y < secblockLenght)
+                    secGrid[x, y] = secPiece[x, y];
+                else
+                    secGrid[x, y] = 0;
+            }
+        }
+    }
+
+    //Add a new block to the spawn list
     private void AddSpawnList()
     {
         blockOrder.RemoveAt(0);
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
     }
 
-    public void MoveBlock()
-    {
-        //check eerst of het nog binnen de grid is
-        if (TetrisGame.inputHelper.KeyPressed(Keys.Right))
-        {
-            for (int y = blockLength; y >= 0; y--)
-            {
-                for (int x = blockLength; x >= 0 ; x--)
-                {
-                    if ((int)SpawnedPieceLocation.X + 1 + x < Width){
-                        if (mainGrid[x + (int)SpawnedPieceLocation.X + 1, y] == 0)
-                        {
-                            mainGrid[x + (int)SpawnedPieceLocation.X + 1, y] = mainGrid[x + (int)SpawnedPieceLocation.X, y];
-                            mainGrid[x + (int)SpawnedPieceLocation.X, y] = 0;
-                        } }
 
-                }
-            }
-            SpawnedPieceLocation.X++;
+
+    //
+    public void Update(GameTime gameTime)
+    {
+        MoveBlock(gameTime);
+        CheckRow();
+
+        if (TetrisGame.inputHelper.MouseLeftButtonPressed())
+        {
+            if (TetrisGame.inputHelper.CheckButtonPressed((int)exitButtonPos.X, (int)exitButtonPos.Y))
+                Exit();
+        }
+    }
+
+
+    //Check for movement
+    private void MoveBlock(GameTime gameTime)
+    {
+        //Rotate Piece
+        if (TetrisGame.inputHelper.KeyPressed(Keys.A))
+        {
+            RotatePiece(SpawnedPiece, false);
         }
 
-        // ga naar links
-    
-        //if right arrow is pressed
-        // ga naar rechts
+        if (TetrisGame.inputHelper.KeyPressed(Keys.D))
+        {
+            RotatePiece(SpawnedPiece, true);
+        }
 
-        //standaard naar beneden gaan
+        //Move block to the right
+        if (TetrisGame.inputHelper.KeyPressed(Keys.Right))
+        {
+            Vector2 NextSpawnPieceLocation = SpawnedPieceLocation + new Vector2(1, 0);
+
+            if (PlaceFree((int)NextSpawnPieceLocation.X, (int)NextSpawnPieceLocation.Y))
+                SpawnedPieceLocation = NextSpawnPieceLocation;
+        }
+
+        //Move Block to the left
+        if (TetrisGame.inputHelper.KeyPressed(Keys.Left))
+        {
+            Vector2 NextSpawnPieceLocation = SpawnedPieceLocation + new Vector2(-1, 0);
+
+            if (PlaceFree((int)NextSpawnPieceLocation.X, (int)NextSpawnPieceLocation.Y))
+                SpawnedPieceLocation = NextSpawnPieceLocation;
+        }
+
+        //Move Block Down
+        Timer += gameTime.ElapsedGameTime.Milliseconds;
+
+        if (Timer >= TimerEnd)
+        {
+            Vector2 NextSpawnPieceLocation = SpawnedPieceLocation + new Vector2(0, 1);
+
+            if (PlaceFree((int)NextSpawnPieceLocation.X, (int)NextSpawnPieceLocation.Y))
+                SpawnedPieceLocation = NextSpawnPieceLocation;
+
+            Timer = 0;
+        }
+
+        //Move Block faster Down
+        if (TetrisGame.inputHelper.KeyPressed(Keys.Down))
+        {
+            Timer = TimerEnd;
+        }
     }
+
+    //Check if the block can move to the next position
+    private bool PlaceFree(int nextSpawnPieceLocationX, int nextSpawnPieceLocationY)
+    {
+        for (int y = 0; y < blockLength; y++)
+        {
+            for (int x = 0; x < blockLength; x++)
+            {
+                int nextX = nextSpawnPieceLocationX + x;
+                int nextY = nextSpawnPieceLocationY + y;
+
+                if (SpawnedPiece[x, y] != 0)
+                {
+                    if (nextX < 0 || nextX >= Width || mainGrid[nextX, (int)SpawnedPieceLocation.Y + y] != 0)
+                    {
+                        return false;
+                    }
+                    
+                    if (nextY >= Height || mainGrid[(int)SpawnedPieceLocation.X + x, nextY] != 0)
+                    {
+                            PlaceBlockInGrid();
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    //Place block in grid
+    private void PlaceBlockInGrid()
+    {
+        for (int x = 0; x < blockLength; x++)
+        {
+            for (int y = 0; y < blockLength; y++)
+            {
+                if (SpawnedPiece[x, y] != 0)
+                {
+                    mainGrid[(int)SpawnedPieceLocation.X + x, (int)SpawnedPieceLocation.Y + y] = SpawnedPiece[x, y];
+                }
+            }
+        }
+        AddSpawnList();
+        SpawnPiece();
+    }
+
+    //Rotate Piece
+    private void RotatePiece(int[,] spawnedPiece, bool rotationDirection)
+    {
+        int[,] rotatedPiece = new int[blockLength, blockLength];
+        for (int x = 0; x < blockLength; x++)
+        {
+            for (int y = 0; y < blockLength; y++)
+            {
+                if (rotationDirection)
+                    rotatedPiece[y, x] = spawnedPiece[x, blockLength - 1 - y];
+                else
+                    rotatedPiece[y, x] = spawnedPiece[blockLength - 1 - x, y];
+            }
+        }
+
+        SpawnedPiece = rotatedPiece;
+
+        if (!PlaceFree((int)SpawnedPieceLocation.X, (int)SpawnedPieceLocation.Y))
+            SpawnedPiece = spawnedPiece;
+    }
+
+
+
 
     //Check if a row is full
     private void CheckRow()
     {
         //Check form the bottem to the top
-        for (int y = Height; y >= 0 ; y--)
+        for (int y = Height - 1; y >= 0; y--)
         {
             bool completeRow = true;
             for (int x = 0; x < Width; x++)
@@ -133,8 +267,8 @@ class TetrisGrid
             if (completeRow)
             {
                 DeleteRow(y);
-                y++; //<-- rij terug zetten omdat het kan gebeuren dat er twee rijen tegelijk vol zijn en dan zou de onderste rij verwijderd worden, de rij daar boven op die rij worden gezet, en dan de CheckRow functie een omhoog zou gaan, en daardoor word die rij ook niet meer gecontroleerd.
-                //Score + 100
+                y++;
+                Score += 100;
             }
         }
     }
@@ -142,15 +276,16 @@ class TetrisGrid
     //Deletes a row
     private void DeleteRow(int row)
     {
-        for (int y = row; y >= 0 ; y--)
+        for (int y = row; y > 0; y--)
         {
             for (int x = 0; x < Width; x++)
             {
-                //zet de waardes van de rij er boven in de huidige rij
                 mainGrid[x, y] = mainGrid[x, y - 1];
             }
         }
     }
+
+
 
     //Clears the grid
     public void Clear()
@@ -160,10 +295,6 @@ class TetrisGrid
             for (int y = 0; y < Height; y++)
             {
                 mainGrid[x, y] = 0;
-                if (secGrid.GetLength(0) > x && secGrid.GetLength(1) > y)
-                {
-                    secGrid[x, y] = 0;
-                }
             }
         }
     }
@@ -176,20 +307,39 @@ class TetrisGrid
         {
             for (int y = 0; y < Height; y++)
             {
-                Color blockColor = Blocks.BlockColor[mainGrid[x, y]];
+                Color pieceColor = Blocks.PieceColor[mainGrid[x, y]];
 
-                s.Draw(gridblock, new Vector2(mainGridPosition.X + x * blockSize, mainGridPosition.Y + y * blockSize), blockColor);
+                s.Draw(gridblock, new Vector2(mainGridPosition.X + x * blockSize, mainGridPosition.Y + y * blockSize), pieceColor);
 
-
-                if (secGrid.GetLength(0) > x && secGrid.GetLength(1) > y)
+                if (x < secGrid.GetLength(0) && y < secGrid.GetLength(1))
                 {
-                    Color secblockColor = Blocks.BlockColor[secGrid[x, y]];
-                    s.Draw(gridblock, new Vector2(secGridPosition.X + x * blockSize, secGridPosition.Y + y * blockSize), secblockColor);
+                    Color secpieceColor = Blocks.PieceColor[secGrid[x, y]];
+                    s.Draw(gridblock, new Vector2(secGridPosition.X + x * blockSize, secGridPosition.Y + y * blockSize), secpieceColor);
                 }
             }
         }
 
-        
+        for (int y = 0; y < blockLength; y++)
+        {
+            for (int x = 0; x < blockLength; x++)
+            {
+                if(SpawnedPiece[x,y] != 0)
+                {
+                    Color pieceColor = Blocks.PieceColor[SpawnedPiece[x, y]];
+
+                    s.Draw(gridblock, new Vector2(mainGridPosition.X + (SpawnedPieceLocation.X + x) * blockSize, mainGridPosition.Y + (SpawnedPieceLocation.Y + y) * blockSize), pieceColor);
+                }
+            }
+        }
+
+        s.DrawString(font, "Score: " + Score, new Vector2(ScorePosition.X, ScorePosition.Y), Color.Black);
+
+        s.Draw(exitButton, new Vector2(exitButtonPos.X, exitButtonPos.Y), Color.White);
+    }
+
+    private void Exit()
+    {
+        ExitGame = true;
     }
 }
 

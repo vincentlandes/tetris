@@ -30,6 +30,8 @@ class TetrisGame : Game
 
         // create the input helper object
         inputHelper = new InputHelper();
+
+        
         
     }
 
@@ -40,6 +42,7 @@ class TetrisGame : Game
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
         gameWorld.Reset();
+        IsMouseVisible = true;
     }
 
     protected override void Update(GameTime gameTime)
@@ -47,7 +50,10 @@ class TetrisGame : Game
         inputHelper.Update(gameTime);
         gameWorld.HandleInput(gameTime, inputHelper);
         gameWorld.Update(gameTime);
-
+        if (gameWorld.menu.ExitGame)
+            Exit();
+        if (gameWorld.grid.ExitGame)
+            Exit();
     }
 
     protected override void Draw(GameTime gameTime)

@@ -6,6 +6,10 @@ class InputHelper
     //current and previous mouse/keyboard states
     MouseState currentMouseState, previousMouseState;
     KeyboardState currentKeyboardState, previousKeyboardState;
+    Vector2 mousePosition;
+
+    int buttonWidth = 200;
+    int buttonHeight = 60;
 
     //time passed since the last key press
     double timeSinceLastKeyPress;
@@ -19,7 +23,6 @@ class InputHelper
         keyPressInterval = 100;
         timeSinceLastKeyPress = 0;
     }
-
 
     //updates the input helper object by updating the mouse and keyboard states and updating the timeSinceLastKeyPress variable
     public void Update(GameTime gameTime)
@@ -45,6 +48,16 @@ class InputHelper
         get { return new Vector2(currentMouseState.X, currentMouseState.Y); }
     }
 
+    public bool CheckButtonPressed(int buttonX, int buttonY)
+    {
+        mousePosition = MousePosition;
+
+        if (mousePosition.X > buttonX && mousePosition.Y > buttonY && mousePosition.X < buttonX + buttonWidth && mousePosition.Y < buttonY + buttonHeight)
+            return true;
+        else
+            return false;
+    }
+
     //indicates whether the left mouse button is pressed
     public bool MouseLeftButtonPressed()
     {
@@ -66,6 +79,4 @@ class InputHelper
     {
         return currentKeyboardState.IsKeyDown(k);
     }
-
-    
 }

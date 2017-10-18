@@ -4,38 +4,48 @@ using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using System;
+using Tetris.Content;
+
+enum GameState
+{
+    Menu, PlayOriginal, GameOver
+}
 
 class GameWorld
 {
-    enum GameState
-    {
-        Playing, GameOver
-    }
+
 
     int screenWidth, screenHeight;
-    Random random;
+
+    public static GameState gameState;
+
+    public Menu menu;
+    public TetrisGrid grid;
+
     SpriteFont font;
-    Texture2D block;
-    GameState gameState;
-    TetrisGrid grid;
+    Texture2D block, playOriginal, exitbutton;
+       
     
-    
-
-
     public GameWorld(int width, int height, ContentManager Content)
     {
         screenWidth = width;
         screenHeight = height;
-        random = new Random();
-        gameState = GameState.Playing;
 
-        block = Content.Load<Texture2D>("block_sprite");
+        gameState = GameState.Menu;
+
         font = Content.Load<SpriteFont>("SpelFont");
-        grid = new TetrisGrid(block);
+        block = Content.Load<Texture2D>("block_sprite");
+        playOriginal = Content.Load<Texture2D>("playOriginal");
+        exitbutton = Content.Load<Texture2D>("exitbutton");
+
+        menu = new Menu(playOriginal, exitbutton);
+        grid = new TetrisGrid(block, font, exitbutton);
+
     }
 
     public void Reset()
     {
+        
     }
 
     public void HandleInput(GameTime gameTime, InputHelper inputHelper)
@@ -44,23 +54,39 @@ class GameWorld
 
     public void Update(GameTime gameTime)
     {
-        grid.MoveBlock();
+        menu.Update(gameTime);
+        grid.Update(gameTime);
     }
 
     public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
     {
         spriteBatch.Begin();
-        grid.Draw(gameTime, spriteBatch);
+
+        if (gameState == GameState.Menu)
+        {
+            menu.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
+        }
+
+
+        if (gameState == GameState.PlayOriginal)
+        {
+            grid.Draw(gameTime, spriteBatch);
+            spriteBatch.End();
+        }
+       
+
+        if (gameState == GameState.GameOver)
+        {
+            //
+            spriteBatch.End();
+        }
+
         spriteBatch.End();
     }
 
     public void DrawText(string text, Vector2 positie, SpriteBatch spriteBatch)
     {
         spriteBatch.DrawString(font, text, positie, Color.Blue);
-    }
-
-    public Random Random
-    {
-        get { return random; }
     }
 }
