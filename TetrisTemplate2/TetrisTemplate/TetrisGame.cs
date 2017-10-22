@@ -29,10 +29,7 @@ class TetrisGame : Game
         graphics.PreferredBackBufferHeight = 600;
 
         // create the input helper object
-        inputHelper = new InputHelper();
-
-        
-        
+        inputHelper = new InputHelper();    
     }
 
     protected override void LoadContent()
@@ -41,14 +38,12 @@ class TetrisGame : Game
 
         // create and reset the game world
         gameWorld = new GameWorld(GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height, Content);
-        gameWorld.Reset();
         IsMouseVisible = true;
     }
 
     protected override void Update(GameTime gameTime)
     {
         inputHelper.Update(gameTime);
-        gameWorld.HandleInput(gameTime, inputHelper);
         gameWorld.Update(gameTime);
         if (gameWorld.menu.ExitGame)
             Exit();
@@ -60,7 +55,7 @@ class TetrisGame : Game
 
     protected override void Draw(GameTime gameTime)
     {
-        GraphicsDevice.Clear(Color.Green);
+        GraphicsDevice.Clear(Color.White);
         gameWorld.Draw(gameTime, spriteBatch);
     }
 }

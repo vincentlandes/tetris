@@ -2,8 +2,6 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Input;
-using System;
 using Tetris.Content;
 using Tetris;
 
@@ -14,8 +12,6 @@ enum GameState
 
 class GameWorld
 {
-
-
     int screenWidth, screenHeight;
 
     public static GameState gameState;
@@ -25,8 +21,8 @@ class GameWorld
     public GameOver gameover;
 
     SpriteFont font;
-    Texture2D block, playOriginal, exitbutton, menubutton;
-    SoundEffect placeBlock;
+    Texture2D block, playOriginal, exitbutton, menubutton, menubackground, gamebackground, gameoverbackground;
+    SoundEffect placeBlock, deleteRow;
        
     
     public GameWorld(int width, int height, ContentManager Content)
@@ -41,21 +37,18 @@ class GameWorld
         playOriginal = Content.Load<Texture2D>("playOriginal");
         exitbutton = Content.Load<Texture2D>("exitbutton");
         menubutton = Content.Load<Texture2D>("menubutton");
+
+        menubackground = Content.Load<Texture2D>("MenuBackground");
+        gamebackground = Content.Load<Texture2D>("GameBackground");
+        gameoverbackground = Content.Load<Texture2D>("GameOverBackground");
+
         placeBlock = Content.Load<SoundEffect>("placeBlock");
+        deleteRow = Content.Load<SoundEffect>("deleteRow");
 
-        menu = new Menu(playOriginal, exitbutton);
-        grid = new TetrisGrid(block, font, exitbutton, placeBlock);
-        gameover = new GameOver(exitbutton, menubutton);
+        menu = new Menu(playOriginal, exitbutton, menubackground);
+        grid = new TetrisGrid(block, font, exitbutton, placeBlock, gamebackground, deleteRow);
+        gameover = new GameOver(exitbutton, menubutton, gameoverbackground);
 
-    }
-
-    public void Reset()
-    {
-        
-    }
-
-    public void HandleInput(GameTime gameTime, InputHelper inputHelper)
-    {
     }
 
     public void Update(GameTime gameTime)
@@ -95,10 +88,5 @@ class GameWorld
         }
 
         spriteBatch.End();
-    }
-
-    public void DrawText(string text, Vector2 positie, SpriteBatch spriteBatch)
-    {
-        spriteBatch.DrawString(font, text, positie, Color.Blue);
     }
 }

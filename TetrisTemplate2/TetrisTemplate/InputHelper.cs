@@ -64,11 +64,6 @@ class InputHelper
         return currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released;
     }
 
-    /*
-     * indicates whether the player has pressed the key k in the current update, a key press is detected
-     * if either the key wasn't pressed in the previous state, or enough time has passed since the last time the key press
-     * was detected
-     */
     public bool KeyPressed(Keys k, bool detecthold = true)
     {
         return currentKeyboardState.IsKeyDown(k) && (previousKeyboardState.IsKeyUp(k) || (timeSinceLastKeyPress > keyPressInterval && detecthold));

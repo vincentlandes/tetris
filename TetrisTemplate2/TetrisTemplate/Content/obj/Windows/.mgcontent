@@ -6,5 +6,6 @@
   <SourceFiles>
     <File>D:/Documenten/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/SpelFont.spritefont</File>
     <File>D:/Documenten/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/placeBlock.wav</File>
+    <File>D:/Documenten/Visual Studio 2015/Projects/Tetris/TetrisTemplate2/TetrisTemplate/Content/deleteRow.wav</File>
   </SourceFiles>
 </SourceFileCollection>

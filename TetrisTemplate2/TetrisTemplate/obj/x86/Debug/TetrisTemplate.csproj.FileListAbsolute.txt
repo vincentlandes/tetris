@@ -183,6 +183,10 @@ C:\Users\vland\Documents\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\Tetr
 D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\exitbutton.png
 D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\menubutton.png
 D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\playOriginal.png
-D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\playTrump.png
 D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\placeBlock.wav
 D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\placeBlock.xnb
+D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\GameBackground.png
+D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\MenuBackground.png
+D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\GameOverBackground.png
+D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\deleteRow.wav
+D:\Documenten\Visual Studio 2015\Projects\Tetris\TetrisTemplate2\TetrisTemplate\bin\Windows\x86\Debug\Content\deleteRow.xnb

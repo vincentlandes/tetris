@@ -1,32 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 
 
 namespace Tetris.Content
 {
     class Menu
     {
-        Texture2D playOriginal;
-        Texture2D exitButton;
+        Texture2D playOriginal, exitButton, menubackground;
 
         Vector2 playOriginalPos;
         Vector2 exitButtonPos;
 
         public bool ExitGame = false;
 
-        public Menu(Texture2D PlayOriginal, Texture2D Exitbutton)
+        public Menu(Texture2D PlayOriginal, Texture2D Exitbutton, Texture2D menuBackground)
         {
             playOriginal = PlayOriginal;
             exitButton = Exitbutton;
+            menubackground = menuBackground;
 
-            playOriginalPos = new Vector2(100, 60);
-            exitButtonPos = new Vector2(100, 160);
+            playOriginalPos = new Vector2(150, 500);
+            exitButtonPos = new Vector2(450, 500);
         }
 
         public void Update(GameTime gameTime)
@@ -50,9 +44,9 @@ namespace Tetris.Content
             ExitGame = true;
         }
 
-
         public void Draw(GameTime gameTime, SpriteBatch s)
         {
+            s.Draw(menubackground, new Rectangle(0, 0, 800, 600), Color.White);
             s.Draw(playOriginal, new Vector2(playOriginalPos.X, playOriginalPos.Y),Color.White);
             s.Draw(exitButton, new Vector2(exitButtonPos.X, exitButtonPos.Y), Color.White);
         }

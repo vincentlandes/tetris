@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 using Tetris;
 using Microsoft.Xna.Framework.Input;
@@ -9,13 +8,13 @@ using Microsoft.Xna.Framework.Audio;
 
 //a class for representing the Tetris playing grid
 class TetrisGrid
-{
-    //Variable    
-    //Block variable
+{ 
+    
+    //Variable//Block variable
     Blocks blocks;
     int blockSize = 30;
     Texture2D gridblock;
-    SoundEffect placeBlock;
+    SoundEffect placeBlock, deleteRow;
 
     //Main Block variable
     public int[,] SpawnedPiece;
@@ -23,6 +22,7 @@ class TetrisGrid
     private Vector2 SpawnedPieceLocation;
     int Timer = 0;
     int TimerEnd = 400;
+    int PieceCount;
 
     //Second Block variable
     public int[,] secPiece;
@@ -43,10 +43,13 @@ class TetrisGrid
     //Score
     int Score = 0;
     Vector2 ScorePosition = new Vector2(420, 200);
+    int Level = 0;
+    Vector2 LevelPosition = new Vector2(420, 220);
     SpriteFont font;
     Texture2D exitButton;
-    Vector2 exitButtonPos = new Vector2(420, 500);
+    Vector2 exitButtonPos = new Vector2(420, 400);
     public bool ExitGame;
+    Texture2D gamebackground;
 
     //Width in terms of grid elements
     public int Width
@@ -62,7 +65,7 @@ class TetrisGrid
    
 
     //
-    public TetrisGrid(Texture2D block, SpriteFont spriteFont, Texture2D ExitButton, SoundEffect playblock)
+    public TetrisGrid(Texture2D block, SpriteFont spriteFont, Texture2D ExitButton, SoundEffect PlaceBlock, Texture2D gameBackground, SoundEffect deleterow)
     {
         //Make a new grid and clear it
         mainGrid = new int[Width, Height];
@@ -77,9 +80,13 @@ class TetrisGrid
 
         //
         font = spriteFont;
-        placeBlock = playblock;
+        placeBlock = PlaceBlock;
+        deleteRow = deleterow;
         exitButton = ExitButton;
+        gamebackground = gameBackground;
 
+
+        //Add the first blocks to the blocklist
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
         blockOrder.Add(rndBlock.Next(0, Blocks.Pieces.Count));
 
@@ -94,6 +101,9 @@ class TetrisGrid
         blockLength = SpawnedPiece.GetLength(0);
         SpawnedPieceLocation = new Vector2(6, 0);
 
+        PieceCount += 1;
+
+        //Create 'next piece' in the second grid
         secPiece = Blocks.Pieces[blockOrder[1]];
         secblockLenght = secPiece.GetLength(0);
         for (int x = 0; x < secGrid.GetLength(0); x++)
@@ -122,6 +132,16 @@ class TetrisGrid
     {
         MoveBlock(gameTime);
         CheckRow();
+
+        if (PieceCount == 10)
+        {
+            if (TimerEnd > 5)
+            {
+                TimerEnd -= 5;
+                Level += 1;
+                PieceCount = 0;
+            }
+        }
 
         if (TetrisGame.inputHelper.MouseLeftButtonPressed())
         {
@@ -245,6 +265,7 @@ class TetrisGrid
                 }
             }
         }
+        Score += 10;
         AddSpawnList();
         SpawnPiece();
     }
@@ -306,6 +327,7 @@ class TetrisGrid
                 mainGrid[x, y] = mainGrid[x, y - 1];
             }
         }
+        deleteRow.Play();
     }
 
 
@@ -325,6 +347,9 @@ class TetrisGrid
     //Draws the grid on the screen
     public void Draw(GameTime gameTime, SpriteBatch s)
     {
+        //draw background
+        s.Draw(gamebackground, new Rectangle(0, 0, 800, 600), Color.White);
+        
         //draw the grid
         for (int x = 0; x < Width; x++)
         {
@@ -355,11 +380,13 @@ class TetrisGrid
             }
         }
 
-        s.DrawString(font, "Score: " + Score, new Vector2(ScorePosition.X, ScorePosition.Y), Color.Black);
+        s.DrawString(font, "Score: " + Score, new Vector2(ScorePosition.X, ScorePosition.Y), Color.White);
+        s.DrawString(font, "Level: " + Level, new Vector2(LevelPosition.X, LevelPosition.Y), Color.White);
 
         s.Draw(exitButton, new Vector2(exitButtonPos.X, exitButtonPos.Y), Color.White);
     }
 
+    //Exit the game
     private void Exit()
     {
         ExitGame = true;

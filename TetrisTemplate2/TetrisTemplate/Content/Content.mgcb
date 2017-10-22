@@ -25,3 +25,9 @@
 /processorParam:Quality=Best
 /build:placeBlock.wav
 
+#begin deleteRow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:deleteRow.wav
+
